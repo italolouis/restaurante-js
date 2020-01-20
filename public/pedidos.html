@@ -12,7 +12,7 @@
         <script src="js/lib/angular-animate.min.js"></script>
         <script src="js/lib/angular-route.min.js"></script>
         <script src="js/lib/angular-resource.min.js"></script>
-		<script src="js/controllers/carrinhoController.js"></script>
+		<script src="js/controllers/pedidosController.js"></script>
 	</head>
 	<body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -29,50 +29,35 @@
 		</div>
 	</nav>
 
-	<div class="container-fluid" ng-controller="carrinhoController">
+	<div class="container-fluid" ng-controller="pedidosController">
 		<div class="row">
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<li><a href="index.html">Produtos</a></li>
-					<li class="active"><a href="#">Carrinho<span class="sr-only">(current)</span></a></li>
-					<li><a href="pedidos.html">Pedidos</a></li>
+					<li><a href="carrinho.html">Carrinho</a></li>
+					<li class="active"><a href="#">Pedidos<span class="sr-only">(current)</span></a></li>
 				</ul>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h2 class="sub-header">Carrinho</h2>
-				<form>
-					<div class="form-group">
-						<label>Cliente</label>
-						<input type="text" class="form-control" placeholder="Nome do cliente" ng-model="nomeCliente">
-					</div>
-					<button class="btn btn-primary"  type="submit" class="btn btn-default" ng-click="confirmarPedido()">Confirmar</button>
-				</form>
-				<h2 class="sub-header">Produtos</h2>
+				<h2 class="sub-header">Pedidos</h2>
 				<div class="table-responsive">
 					<table class="table table-striped">
 						<thead>
 						<tr>
-							<th>Nome</th>
-							<th>Preço</th>
-							<th>Quantidade</th>
-							<th>Excluir</th>
+							<th>Id</th>
+							<th>Cliente</th>
+							<th>Valor</th>
 						</tr>
 						</thead>
 						<tbody>
-						<tr ng-repeat="produto in produtos" ng-model="produtos.values">
-							<td>{{produto.nome}}</td>
-							<td>{{produto.preco| number:2}}</td>
-							<td>
-								<div class="input-group">
-									<input type="number" class="form-control input-number" value={{produto.quantidade}} min="1" max="100">
-								</div>
-							</td>
-							<td><button class="btn btn-danger" ng-click="excluirItem(produto)">Excluir</button></td>
+						<tr ng-repeat="pedido in pedidos">
+							<td>{{pedido.id}}</td>
+							<td>{{pedido.cliente}}</td>
+							<td>{{pedido.valor| number:2}}</td>
 						</tr>
 						</tbody>
 					</table>
 				</div>
-				<h2 class="sub-header">Total: {{totalPedido || currency}}</h2>
 			</div>
 		</div>
 	</div>
